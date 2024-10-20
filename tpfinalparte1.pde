@@ -1,28 +1,28 @@
 //Tp final Martina Sosa 92541/2 y María Sol Palau 91626/2
 import processing.sound.*;
-PImage[] images;
+PImage[] imagenes;
 PImage imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10, imagen11, imagen12, imagen13, imagen14, imagen15, imagen16, imagen17, imagen18, imagen19, imagen20, imagen21, imagen22, imagen23, imagen24;
 SoundFile file;
 int currentState = 0;
-int path = 0; // 0 for main path, 1 for left path, 2 for right path
+int path = 0; // 0 para camino principal, 1 para camino malo, 2 para camino alternativo
 String[] textosBotonIzquierdo = {
-  ":3", "Secuestrar a Stéfano", "Option B", "Option C", "Option D", "Option E", "Option F", "Option G", "Option H", "Option I", "Option J", "Option K"
+  "Prueba", "Opcion A", "Opcion B", "Opcion C", "Opcion D", "Opcion E", "Opcion F", "Opcion G", "Opcion H", "Opcion I", "Opcion J", "Opcion K"
 };
 String[] textosBotonDerecho = {
-  ":3", "Pedir ayuda", "Option M", "Option N", "Option O", "Option P", "Option Q", "Option R", "Option S", "Option T", "Option U", "Option V"
+  "Créditos", "Pedir ayuda", "Opcion M", "Opcion N", "Opcion O", "Opcion P", "Opcion Q", "Opcion R", "Opcion S", "Opcion T", "Opcion U", "Opcion V"
 };
 
 
 void setup () {
   size(640, 480);
-  images = new PImage[22];
+  imagenes = new PImage[22];
   file = new SoundFile(this, "data/ambiente.mp3");
   file.amp(0.5);
   file.play();
   
-  images = new PImage[22];
+  imagenes = new PImage[22];
   for (int i = 1; i < 22; i++) {
-    images[i] = loadImage("data/imagen" + i + ".jpg");
+    imagenes[i] = loadImage("data/imagen" + i + ".jpg");
   }
 }
 
@@ -47,9 +47,9 @@ void buttonRight(String texto) {
 
 void draw () {
   background(255);
-  image(images[getImageIndex()], 0, 0, width, height);
+  image(imagenes[getImageIndex()], 0, 0, width, height);
   
-  // Draw buttons
+  // Dibujar botones
   fill(#9BA3FF);
   ellipse(160, 360, 200, 100); // Left button
   ellipse(480, 360, 200, 100); // Right button
@@ -63,15 +63,15 @@ void draw () {
 
 void mousePressed() {
   if (mouseX > 60 && mouseX < 260 && mouseY > 310 && mouseY < 410) {
-    // Left button clicked
+    // Boton izquierdo clickeado
     if (currentState == 1) {
-      path = 1; // Left path
+      path = 1; 
     }
     currentState = getNextState();
   } else if (mouseX > 380 && mouseX < 580 && mouseY > 310 && mouseY < 410) {
-    // Right button clicked
+    // Boton derecho clickeado
     if (currentState == 1) {
-      path = 2; // Right path
+      path = 2; 
     }
     currentState = getNextState();
   }
